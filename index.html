@@ -230,7 +230,7 @@
     </div>
 
     <div class="tips-text">
-        💡 Klik tombol <b>Mulai Ulang / Refresh Game</b> atau arahkan jari ke tombol <b>Reset</b> di layar untuk memulai ulang kuis seketika tanpa reload browser.
+        💡 Urutan soal otomatis diacak (shuffle) setiap refresh halaman atau klik tombol <b>Mulai Ulang / Refresh Game</b>. Arahkan jari ke tombol <b>Reset</b> di layar untuk mengulang kuis seketika.
     </div>
 
     <script>
@@ -306,8 +306,8 @@
             btn.classList.toggle('active', showMiniCamera);
         }
 
-        // --- Data Soal Kuis ---
-        const questions = [
+        // --- Bank Soal Kuis ---
+        const QUESTION_BANK = [
             { q: "Apa ibukota Indonesia?", options: ["A. Bandung", "B. Jakarta", "C. Surabaya", "D. Bali"], ans: 1 },
             { q: "Berapa hasil 15 + 25?", options: ["A. 30", "B. 35", "C. 40", "D. 45"], ans: 2 },
             { q: "Planet terdekat dari matahari?", options: ["A. Merkurius", "B. Venus", "C. Bumi", "D. Mars"], ans: 0 },
@@ -319,6 +319,19 @@
             { q: "Organ tubuh pemompa darah?", options: ["A. Paru-paru", "B. Hati", "C. Lambung", "D. Jantung"], ans: 3 },
             { q: "Berapa sisi yang dimiliki kubus?", options: ["A. 4 sisi", "B. 6 sisi", "C. 8 sisi", "D. 12 sisi"], ans: 1 }
         ];
+
+        // Fungsi Shuffle Array (Algoritma Fisher-Yates)
+        function shuffleQuestions(array) {
+            const arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        // Inisialisasi daftar soal aktif yang diacak setiap refresh/load
+        let questions = shuffleQuestions(QUESTION_BANK);
 
         let currentQ = 0;
         let score = 0;
@@ -385,6 +398,8 @@
 
         // Fungsi Refresh / Mulai Ulang Seketika
         function restartGame() {
+            // Acak ulang susunan soal setiap kali mulai ulang / refresh
+            questions = shuffleQuestions(QUESTION_BANK);
             currentQ = 0;
             score = 0;
             gameOver = false;

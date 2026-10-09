@@ -16,6 +16,7 @@ Game kuis interaktif berbasis browser yang dimainkan menggunakan gestur tangan s
 - **🦴 Visualisasi Interaktif**:
   - Tombol toggle untuk menampilkan/menyembunyikan rangka sendi tangan (*Skeleton*).
   - Mode *Mini Camera* (Picture-in-Picture) untuk memantau tampilan asli webcam di sudut layar.
+- **🔀 Soal Acak Otomatis (Auto Shuffle)**: Urutan 10 soal diacak secara dinamis setiap kali halaman dimuat ulang (refresh) atau saat menekan tombol Mulai Ulang / Main Lagi, memberikan pengalaman bermain yang selalu segar dan tidak monoton.
 - **🔄 Mulai Ulang / Refresh Seketika**: Mulai ulang kuis kapan saja melalui toolbar kontrol atau tombol Reset di dalam canvas tanpa harus memuat ulang halaman.
 - **⚡ Ringan & Mandiri**: Murni menggunakan HTML5, CSS3, dan Vanilla JavaScript tanpa perlu dependensi rumit atau bundler.
 
